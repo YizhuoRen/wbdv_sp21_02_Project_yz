@@ -19,5 +19,5 @@ Types of users: user, admin
    - (Use MySql database to store data.)
    - Deploy the client and server on Heroku.
 6. A brief description of the Web API:
-   - [Web API Link](http://developer.kbb.com/#!/data/1-Default)
+   - [Web API Link](https://otonomo.io/car-data-api/)
    - This Web API can give Vehicle info, pricing, configuration, plus much more. 
