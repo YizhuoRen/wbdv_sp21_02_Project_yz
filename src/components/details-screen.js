@@ -20,6 +20,7 @@
         <p>
           <img className="float-right yz-detail-screen-image" src={resultDrink.strDrinkThumb}/>
         </p>
+        <p>type: {resultDrink.strAlcoholic}</p>
         <ul>
           {resultDrink.strIngredient1 &&
           <li>
