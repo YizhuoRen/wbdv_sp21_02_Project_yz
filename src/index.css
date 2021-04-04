@@ -11,3 +11,49 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.yz-home-title {
+  text-align: center;
+  color: #1d3557;
+}
+
+.yz-home-input {
+  width: 60%;
+  position: absolute;
+  top:5rem;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.yz-search-result-list {
+  width: 60%;
+  position: absolute;
+  top:10rem;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.yz-home-input-search-div {
+  height: 38px;
+}
+
+.yz-home-page-image {
+  border-radius: 15px;
+  width: 50%;
+  position: absolute;
+  top:8rem;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.yz-detail-screen-container {
+  width: 80%;
+}
+
+
