@@ -18,7 +18,8 @@
           }}>back</button>
           <h2>{resultDrink.strDrink}</h2>
         <p>
-          <img className="float-right yz-detail-screen-image" src={resultDrink.strDrinkThumb}/>
+          <img className="float-right yz-detail-screen-image"  alt=""
+               src={resultDrink.strDrinkThumb}/>
         </p>
         <p>type: {resultDrink.strAlcoholic}</p>
         <ul>
