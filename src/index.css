@@ -59,7 +59,58 @@ code {
 .yz-detail-screen-image {
   width:400px;
   border-radius: 10px;
+}
 
+.yz-sign-up-container {
+  padding-top: 90px;
+  padding-left: 100px;
+  justify-content: space-between;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  font-weight: 400;
+  font-size: 14px;
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Ubuntu,sans-serif;
+
+}
+
+.yz-sign-up-box {
+  padding-top: 80px;
+}
+
+.yz-signup-title {
+  font-family: sohne-var,sohne-woff,Helvetica Neue,Arial,sans-serif;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 500;
+  letter-spacing: -.2px;
+  padding-bottom: 40px;
+  padding-right:20px;
+  padding-left: 20px;
+}
+
+.yz-sign-up-labels {
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Ubuntu,sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #1a1f36;
+}
+
+.yz-create-account-btn {
+  background-color: #4361ee;
+}
+
+.yz-sign-up-row{
+
+  min-height: 70px;
+  padding-top: 4px;
+}
+
+.yz-sign-up-image {
+  width:500px;
+  height: 600px;
+  border-radius: 200px;
 }
 
 
