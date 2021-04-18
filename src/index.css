@@ -17,6 +17,14 @@ code {
   color: #1d3557;
 }
 
+.yz-home-links {
+  padding-top: 5rem;
+  padding-left: 5rem;
+  font-weight: 400;
+  font-size: 20px;
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Ubuntu,sans-serif;
+}
+
 .yz-home-input {
   width: 60%;
   position: absolute;
@@ -47,8 +55,8 @@ code {
   position: absolute;
   top:8rem;
   bottom: 0;
-  left: 0;
   right: 0;
+  z-index: -1;
   margin: auto;
 }
 
@@ -76,7 +84,7 @@ code {
 }
 
 .yz-sign-up-box {
-  padding-top: 80px;
+  padding-top: 55px;
 }
 
 .yz-signup-title {
@@ -111,6 +119,82 @@ code {
   width:500px;
   height: 600px;
   border-radius: 200px;
+}
+
+.yz-sign-in-container {
+  margin-top: 110px;
+  padding-top: 20px;
+  background-color: #f7f7ff;
+  z-index: 0;
+  position: relative;
+  /*display: flex;*/
+  /*flex-direction: row;*/
+  height: 100%;
+  width: 40%;
+  color: #3c4257;
+  font-weight: 400;
+  font-size: 14px;
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Ubuntu,sans-serif;
+}
+
+.yz-sign-in-title {
+  font-size: 24px;
+  padding-top: 40px;
+  font-weight: 500;
+  line-height: 32px;
+  font-family: sohne-var,sohne-woff,Helvetica Neue,Arial,sans-serif;
+  letter-spacing: -.2px;
+  color: #3c4257;
+}
+
+
+.yz-sign-in-labels {
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Ubuntu,sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #1a1f36;
+}
+
+.yz-sign-in-row {
+  min-height: 70px;
+  padding-top: 4px;
+}
+
+.yz-sign-in-rows {
+  padding-top: 40px;
+}
+
+.yz-sign-in-box {
+  width: 90%;
+  padding-left: 5%;
+}
+
+.yz-logo-name {
+  color: #3c4257;
+  font-weight: 800;
+  font-size: 20px;
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Ubuntu,sans-serif;
+}
+
+.yz-profile-left-column {
+  bottom: 0;
+  justify-content: flex-end;
+  padding: 20px 12px 20px 20px;
+  top: 0;
+  width: 270px;
+  z-index: 10;
+}
+
+.yz-profile-right-column {
+  bottom: 0;
+  justify-content: flex-end;
+  padding: 20px 12px 20px 20px;
+  top: 0;
+  width: 270px;
+  z-index: 10;
+  font-weight: 500;
+  font-size: 20px;
+  font-family: 'Roboto Slab', serif;
 }
 
 

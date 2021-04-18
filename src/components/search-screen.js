@@ -19,7 +19,6 @@ const SearchScreen = () => {
   })}
   return(
       <div>
-        <h2>Search Screen</h2>
         <div className="input-group mb-3 yz-home-input">
           <input onChange={(event) => setSearchName(event.target.value)} value={searchName}
                  type="text" className="form-control"
