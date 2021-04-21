@@ -4,16 +4,21 @@ import userService from "../../services/user-service"
 
 const Register = () => {
   const history = useHistory();
-  const [credentials, setCredentials] = useState({username: "", password: "", role: ""});
+  const [credentials, setCredentials] = useState({username: "", password: "", role: "USER"});
   const register = () => {
-    userService.register(credentials).then((user) => {
-      console.log(user)
-      if (user === 0) {
-        alert("username already taken")
-      } else {
-        history.push("/profile")
-      }
-    })
+    if ((credentials.username === "")||(credentials.password ==="")) {
+      alert("Please input username and password.")
+    }
+    else {
+      userService.register(credentials).then((user) => {
+        console.log(user)
+        if (user === 0) {
+          alert("username already taken")
+        } else {
+          history.push("/profile")
+        }
+      })
+    }
   }
   return (
       <div className="row container yz-sign-up-container">
@@ -32,26 +37,15 @@ const Register = () => {
                   {...credentials, username: event.target.value})}/>
             </div>
           </div>
+          {/*<div className="mb-3 row yz-sign-up-row">*/}
+          {/*  <label htmlFor="password" className="col-sm-2 yz-sign-up-labels">Password</label>*/}
+          {/*  <div className="col-sm-10">*/}
+          {/*    <input type="password" id="password" className="form-control"*/}
+          {/*           placeholder="123qwe#$%" />*/}
+          {/*  </div>*/}
+          {/*</div>*/}
           <div className="mb-3 row yz-sign-up-row">
-            <label htmlFor="role" className="col-sm-2 yz-sign-up-labels">Role</label>
-            <div className="col-sm-10">
-              <input type="radio" id="role1" name="role" value="ADMIN"/>
-                <label htmlFor="role1" onClick={()=>setCredentials({...credentials, role: "ADMIN"})}>Admin</label>
-              <span>&nbsp;&nbsp;&nbsp;</span>
-              <input type="radio" id="role2" name="role" value="USER" onClick={()=>setCredentials(
-                  {...credentials, role: "USER"})}/>
-              <label htmlFor="role2">User</label>
-            </div>
-          </div>
-          <div className="mb-3 row yz-sign-up-row">
-            <label htmlFor="password" className="col-sm-2 yz-sign-up-labels">Password</label>
-            <div className="col-sm-10">
-              <input type="password" id="password" className="form-control"
-                     placeholder="123qwe#$%" />
-            </div>
-          </div>
-          <div className="mb-3 row yz-sign-up-row">
-            <label htmlFor="verifyPassword" className="col-sm-2 yz-sign-up-labels">Verify
+            <label htmlFor="verifyPassword" className="col-sm-2 yz-sign-up-labels">
               Password</label>
             <div className="col-sm-10">
               <input value={credentials.password} type="password" id="verifyPassword" className="form-control"
@@ -60,7 +54,7 @@ const Register = () => {
             </div>
           </div>
           <div className="mb-3 row">
-            <label htmlFor="registerBtn" className="col-sm-2"></label>
+            <label htmlFor="registerBtn" className="col-sm-2"/>
             <div className="col-sm-10">
                 <button onClick={register} id="registerBtn" className="btn btn-primary btn-block yz-create-account-btn">
                   Creat Account
@@ -68,7 +62,7 @@ const Register = () => {
             </div>
           </div>
           <div className="mb-3 row">
-            <label className="col-sm-2"></label>
+            <label className="col-sm-2"/>
             <div className="col-sm-10">
               <span>Have an account?</span>
               <Link to="/login"> Sign in</Link>

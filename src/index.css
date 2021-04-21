@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Orelega+One&family=Raleway&display=swap');
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,6 +13,11 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .yz-home-title {
@@ -51,14 +59,47 @@ code {
 
 .yz-home-page-image {
   border-radius: 15px;
-  width: 50%;
+  width: 30%;
   position: absolute;
-  top:8rem;
   bottom: 0;
   right: 0;
-  z-index: -1;
+  z-index: -10;
   margin: auto;
 }
+.yz-home-card-group {
+  width:70%;
+  margin-top: 60px;
+  margin-left: 300px;
+}
+
+.yz-card {
+  margin-bottom: 80px;
+  height: 450px;
+  margin-left: 50px;
+}
+
+.yz-home-user-group {
+  margin-top: 100px;
+  width: 20%;
+  position: absolute;
+}
+
+.yz-home-title {
+  margin-top: 100px;
+  padding-left: 100px;
+  font-family: 'Courgette', cursive;
+  font-size: xx-large;
+
+}
+
+.yz-home-description {
+  padding-left: 150px;
+  margin-top: 40px;
+  font-size: large;
+  font-family: 'Courgette', regular;
+  text-align: center;
+}
+
 
 .yz-detail-screen-container {
   width: 80%;
@@ -176,6 +217,18 @@ code {
   font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Ubuntu,sans-serif;
 }
 
+.yz-profile-message-box {
+  padding-top: 20px;
+  margin-left: 20px;
+  width: 80%;
+}
+
+.yz-profile-messages-no-content {
+  padding-top: 4rem;
+  width: 50%;
+  text-align: center;
+}
+
 .yz-profile-left-column {
   bottom: 0;
   justify-content: flex-end;
@@ -196,5 +249,15 @@ code {
   font-size: 20px;
   font-family: 'Roboto Slab', serif;
 }
+
+.yz-create-drink-form {
+  width: 80%;
+  padding-bottom: 300px;
+}
+
+.yz-user-card {
+  max-width: 300px;
+}
+
 
 

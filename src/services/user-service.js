@@ -27,10 +27,40 @@ const logout = () => {
     credentials: "include"}).then(response => response.json())
 }
 
+const findRecentNewUsers= () => {
+  return fetch(`${URL}/new`, {
+    method:'post'}).then(response => response.json())
+}
+
+const updateProfile = (user) => {
+  return fetch(`${URL}/update`, {
+    method:'post',
+    credentials: "include",
+    body: JSON.stringify(user),
+    headers: {'content-type': 'application/json'}},
+      ).then(response => response.json())
+}
+
+const findUserById = (userId) => {
+  return fetch(`${URL}/${userId}`
+  ).then(response => response.json())
+}
+
+const follow = (userVisited, currentUser) => {
+  return fetch(`${URL}/follow/${userVisited._id}/${currentUser._id}`, {
+    method:'post',
+    headers: {'content-type': 'application/json'}},
+  ).then(response => response.json())
+}
+
 
 export default {
   register,
   login,
   logout,
   profile,
+  findRecentNewUsers,
+  updateProfile,
+  findUserById,
+  follow
 }
