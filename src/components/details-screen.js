@@ -5,6 +5,7 @@ import drinkService from "../services/drink-service"
 import userService from "../services/user-service"
 import reviewService from "../services/review-service"
 import ReviewSubmitForm from "./reviews/review-submit-form";
+import Moment from 'react-moment';
 
 const DetailsScreen = () => {
   const {drinkId} = useParams();
@@ -18,27 +19,21 @@ const DetailsScreen = () => {
   useEffect(() => {
     findCocktailById();
     userService.profile().then(currentUser => {
-      setCurrentUser(currentUser)
+      setCurrentUser(currentUser);
     });
     reviewService.findReviewsForDrink(drinkId).then(reviews =>
         setReviewsForCurrentDrink(reviews))
   }, []);
 
   const findCocktailById = () => {
-    cocktailService.findCocktailById(drinkId).then(
-        (data) => setResultDrink(data.drinks[0]))
-    if (resultDrink._id === undefined) {
-      drinkService.findDrinkById(drinkId).then((drink) => {
-        setResultDrink(drink);
-        userService.findUserById(drink.creator).then((creator) => {
-          SetCreator(creator)
-        })
-      });
-    }
+      drinkService.findDrinkById(drinkId).then((d) => {
+        setResultDrink(d);
+        SetCreator(d.creator)}
+      )
   }
 
   const tryAddingNewReview = () => {
-    if (currentUser === 0) {
+    if (currentUser === 0 || currentUser === {}) {
       alert("please login first")
     } else {
       setAddingReviewState(true)
@@ -160,40 +155,53 @@ const DetailsScreen = () => {
         </div>
         }
         <br/>
-        {creator &&
         <div>
-          Creator: &nbsp;&nbsp;
+          {creator !== {} &&
+          <>By:
           <Link to={`/profile/${creator._id}`}>
+             &nbsp;&nbsp;
             {creator.username}
-          </Link>
+          </Link></>}
+          {creator === {} &&
+          <div>From Website</div>
+          }
         </div>
-        }
         <br/>
-        <button onClick={() => tryAddingNewReview()} type="button"
-                className="btn btn-danger">Add Review
-        </button>
-        {addingReviewState && <ReviewSubmitForm
-            setAddingReviewState={setAddingReviewState}
-            currentUser={currentUser}
-            setReviewsForCurrentDrink={setReviewsForCurrentDrink}/>}
-        <div>
-          <br/>
-          <br/>
-          <h3>Reviews:</h3>
-          <ul className="list-group">
-            {reviewsForCurrentDrink.map(review =>
-                <li key={review._id} className="list-group-item">
-                  <h6>{review.content}</h6>
-                  <br/>
-                  <div className="float-right">
-                    {review.creator.username}
-                    <br/>
-                    {review.createdTime}
-                  </div>
+        {creator !== {} &&
+        <>
+          {currentUser.username !== undefined &&
+          <button onClick={() => tryAddingNewReview()} type="button"
+                  className="btn btn-danger">Add Review
+          </button>}
+          {addingReviewState && <ReviewSubmitForm
+              setAddingReviewState={setAddingReviewState}
+              currentUser={currentUser}
+              setReviewsForCurrentDrink={setReviewsForCurrentDrink}/>}
+          <div>
+            <br/>
+            <br/>
 
-                </li>)}
-          </ul>
-        </div>
+            <ul className="list-group">
+              {
+                reviewsForCurrentDrink.map(review =>
+                    <li key={review._id} className="list-group-item">
+                      <h6>{review.content}</h6>
+                      <br/>
+                      <div className="float-right">
+                        <Link to={`/profile/${review.creator._id}`}>
+                          {review.creator.username}
+                        </Link>
+                        <br/>
+                        <Moment>
+                          {review.createdTime}
+                        </Moment>
+                      </div>
+                    </li>)
+              }
+            </ul>
+            <br/><br/>
+          </div>
+        </>}
       </div>
   )
 }

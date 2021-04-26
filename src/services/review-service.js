@@ -10,13 +10,13 @@ const createReview = (drinkId, review) =>
     response.json())
 
 const findReviewsForDrink = (drinkId) =>
-    fetch(`${REVIEWS_URL}/${drinkId}/reviews`).then(response =>
+    fetch(`${REVIEWS_URL3}/${drinkId}`).then(response =>
         response.json())
 
 
 const findReviewsByCreator = (userId) =>
-    fetch(`${REVIEWS_URL2}/${userId}/reviews`).then(response =>
-        response.json())
+  fetch(`${REVIEWS_URL2}/${userId}/reviews`).then(response =>
+      response.json())
 
 export const deleteReview = (reviewId) =>
     fetch(`${REVIEWS_URL3}/${reviewId}`, {method:'DELETE'}).then(response => response.json())

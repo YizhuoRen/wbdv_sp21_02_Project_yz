@@ -5,11 +5,12 @@ import drinkService from "../../services/drink-service"
 const CurrentDrink = ({userId}) => {
   const [newDrink, setNewDrink] = useState({})
   const history = useHistory();
+
   const createNewDrink = () => {
     drinkService.createDrink(userId, newDrink).then((result) => {
-      setNewDrink(result)
+      setNewDrink(result);
+      history.push(`/details/${result._id}`)
     });
-    alert("new drink created")
   }
 
   return(
@@ -51,7 +52,7 @@ const CurrentDrink = ({userId}) => {
     </div>
 
     <button onClick={() => {
-      createNewDrink();
+      createNewDrink()
     }} type="submit" className="btn btn-primary">Submit</button>
   </form>)
 }

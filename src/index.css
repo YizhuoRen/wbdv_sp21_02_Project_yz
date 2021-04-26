@@ -20,10 +20,6 @@ html, body {
   overflow-x: hidden;
 }
 
-.yz-home-title {
-  text-align: center;
-  color: #1d3557;
-}
 
 .yz-home-links {
   padding-top: 5rem;
@@ -35,7 +31,6 @@ html, body {
 
 .yz-home-input {
   width: 60%;
-  position: absolute;
   top:5rem;
   bottom: 0;
   left: 0;
@@ -53,8 +48,36 @@ html, body {
   margin: auto;
 }
 
+.yz-add-review-container {
+  margin-top: 20px;
+  width: 60%;
+  background-color: #edafb8;
+}
+
 .yz-home-input-search-div {
   height: 38px;
+}
+
+.yz-home-navbar {
+  background-color: #edafb8;
+
+}
+
+.yz-major-container-home {
+  background-color: #f7eeed;
+  min-height: 100vh;
+}
+
+.yz-profile-container {
+  background-color: #f4f3ee;
+  min-height: 100vh;
+}
+
+.yz-update-drink-container {
+  background-color: #f4f3ee;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 50px;
 }
 
 .yz-home-page-image {
@@ -67,15 +90,7 @@ html, body {
   margin: auto;
 }
 .yz-home-card-group {
-  width:70%;
   margin-top: 60px;
-  margin-left: 300px;
-}
-
-.yz-card {
-  margin-bottom: 80px;
-  height: 450px;
-  margin-left: 50px;
 }
 
 .yz-home-user-group {
@@ -84,22 +99,34 @@ html, body {
   position: absolute;
 }
 
+.yz-profile-other-picture {
+  width: 50%;
+  height: 200px;
+}
+
+.yz-card {
+  margin-bottom: 80px;
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+
+
 .yz-home-title {
   margin-top: 100px;
-  padding-left: 100px;
   font-family: 'Courgette', cursive;
   font-size: xx-large;
-
 }
 
 .yz-home-description {
-  padding-left: 150px;
   margin-top: 40px;
   font-size: large;
   font-family: 'Courgette', regular;
   text-align: center;
 }
-
+.yz-row-users-home{
+  margin-left: 3px;
+}
 
 .yz-detail-screen-container {
   width: 80%;
@@ -217,6 +244,12 @@ html, body {
   font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Ubuntu,sans-serif;
 }
 
+.yz-profile-content-box{
+  margin-top: 50px;
+  padding-left: 50px;
+  padding-right: 20px;
+}
+
 .yz-profile-message-box {
   padding-top: 20px;
   margin-left: 20px;
@@ -226,7 +259,7 @@ html, body {
 .yz-profile-messages-no-content {
   padding-top: 4rem;
   width: 50%;
-  text-align: center;
+  left: 100px;
 }
 
 .yz-profile-left-column {

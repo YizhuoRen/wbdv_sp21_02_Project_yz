@@ -23,7 +23,39 @@ const UserCard = ({user}) => {
           </div>
         </div>
       </div>
+
+  // <div className="card">
+  //   <Link to={`/profile/${user._id}`}>
+  //     <img src={user.photoAddress} width={100} alt="..."/>
+  //   </Link>
+  //     <div className="card-body">
+  //       <Link to={`/profile/${user._id}`}>
+  //       <h5 className="card-title">{user.username}</h5>
+  //       </Link>
+  //     </div>
+  //     <div className="card-footer">
+  //       <small className="text-muted">New user</small>
+  //     </div>
+  // </div>
+
+  // <div className="col">
+  //   <div className="card small">
+  //     <Link to={`/profile/${user._id}`}>
+  //     <img src={user.photoAddress} className="card-img-top" alt="..."/>
+  //     </Link>
+  //       <div className="card-body">
+  //         <Link to={`/profile/${user._id}`}>
+  //         <h5 className="card-title">{user.username}</h5>
+  //         </Link>
+  //       </div>
+  //       <div className="card-footer">
+  //         <small className="text-muted">New user</small>
+  //       </div>
+  //   </div>
+  // </div>
   )
+
+
 
 }
 

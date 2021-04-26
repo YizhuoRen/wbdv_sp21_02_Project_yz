@@ -24,7 +24,7 @@ const createAdmin = (credentials) =>
       body: JSON.stringify(credentials),
       headers: {'content-type': 'application/json'}}).then(response => response.json())
 
-const profile = () => {
+const adminPage = () => {
   return fetch(`${ADMIN_URL}/admin`, {method: "post", credentials: "include"}).then((response) =>
       response.json())
 }
@@ -33,5 +33,5 @@ export default {
   login,
   logout,
   createAdmin,
-  profile
+  adminPage
 }

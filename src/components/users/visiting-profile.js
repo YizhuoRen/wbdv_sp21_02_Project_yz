@@ -4,25 +4,44 @@ import userService from "../../services/user-service"
 import CurrentDrink from "../drinks/current-drink";
 import drinkService from "../../services/drink-service"
 import DrinkCard from "../drinks/drink-card";
+import reviewService from "../../services/review-service";
+import ReviewCardHome from "../reviews/review-card-home";
+import FollowersCard from "./followers-card";
+import ReviewCardProfile from "../reviews/review-card-profile";
 
 const VisitingProfile = () => {
   const {userId} = useParams();
+  const [active, setActive] = useState("activeUser")
   const [userVisited, setUserVisited] = useState({});
   const [currentUser, setCurrentUser] = useState({});
   const [drinksOfUserVisited, setDrinksOfUserVisited] = useState([]);
+  const [reviewsOfUserVisited, setReviewsOfUserVisited] = useState([]);
+  const [showContent, setShowContent] = useState("USER")
+  const [followingState, setFollowingState] = useState(false)
 
   useEffect(() => {
         userService.findUserById(userId).then((user) => {
           setUserVisited(user)
+          userService.profile().then(currentUser => {
+            setCurrentUser(currentUser)
+            checkFollowingState(user, currentUser);
+          });
         });
-        userService.profile().then(currentUser => {
-          setCurrentUser(currentUser)
-        })
       }
-      , [])
+      , [userId])
 
-  const findDrinksByCreator = (currentUser) => {
-    drinkService.findDrinksByCreator(currentUser._id).then(
+  const checkFollowingState = (userVisited, currentUser) => {
+    userService.checkFollowingState(userVisited, currentUser).then(result => {
+      if (result === 1) {
+        setFollowingState(true);
+      } else {
+        setFollowingState(false);
+      }
+    })
+  }
+
+  const findDrinksByCreator = (userVisited) => {
+    drinkService.findDrinksByCreator(userVisited._id).then(
         (drinks) => setDrinksOfUserVisited(drinks))
   }
 
@@ -30,64 +49,124 @@ const VisitingProfile = () => {
     if (currentUser === 0) {
       alert("please login first")
     }
-    if (userVisited.followers.includes(currentUser._id)) {
-      alert("already followed")
-    }
     else {
       userService.follow(userVisited, currentUser).then((result) => {
-        alert("follow success")
+        setFollowingState(true)
       })
     }
   }
 
+  const unfollow = () => {
+    if (currentUser === 0) {
+      alert("please login first")
+    }
+    else {
+      userService.unfollow(userVisited, currentUser).then((result) => {
+        setFollowingState(false)
+      })
+    }
+  }
+  const getFollowers = () => {
+    if (userVisited.username !== undefined) {
+      userService.findUserById(userVisited._id).then(
+          (user) => setUserVisited(user)
+      )
+    }
+  }
+
+  const getFollowing = () => {
+    if (userVisited.username !== undefined) {
+      userService.findUserById(userVisited._id).then(
+          (user) => setUserVisited(user)
+      )
+    }
+  }
+
+  const findReviewsOfUserVisited = (userVisited) => {
+    reviewService.findReviewsByCreator(userVisited._id).then(
+        reviews => setReviewsOfUserVisited(reviews))
+  }
+
+  const deleteReview = (reviewId) => {
+    reviewService.deleteReview(reviewId).then(() =>
+        reviewService.findReviewsByCreator(userVisited._id).then(
+            reviewsByCurrentUser => setReviewsOfUserVisited(
+                reviewsByCurrentUser)))
+  }
+
   return (
-      <div>
-        <h1>Profile of {userVisited.username}</h1>
+      <div className="container yz-profile-container">
+        <br/>
+        <div className="float-right font-italic">
+          <h6>Profile of <strong>{userVisited.username}</strong></h6>
+        </div>
+        <br/>
         <div className="container-fluid">
-          <div className="row">
-            <div className="col col-2 yz-profile-left-column">
-              <ul className="nav flex-column">
+
+            <div>
+              <ul className="nav nav-tabs">
+
                 <li className="nav-item">
-                  <div className="nav-link">
-                    <Link to={`/profile/${userVisited._id}`}>
+                  <div className={`nav-link ${active==="activeUser" ? 'active':''}`}>
+                    <Link onClick={() => {
+                      setShowContent("USER");
+                      setActive("activeUser")
+                    }}
+                          to={`/profile/${userVisited._id}`}>
                       <i className="far fa-user"/>
                       &nbsp;&nbsp;User
                     </Link>
                   </div>
                 </li>
+
                 <li className="nav-item">
-                  <div className="nav-link">
-                    <Link to={`/profile/${userVisited._id}/followers`}>
+                  <div className={`nav-link ${active==="activeFollowers" ? 'active':''}`}>
+                    <Link onClick={() => {
+                      setShowContent("FOLLOWERS");
+                      getFollowers(); setActive("activeFollowers")
+                    }} to={`/profile/${userVisited._id}`}>
                       <i className="fas fa-user-friends"/>
                       &nbsp;&nbsp;Followers
                     </Link>
                   </div>
                 </li>
+
                 <li className="nav-item">
-                  <div className="nav-link">
-                    <Link to={`/profile/${userVisited._id}/following`}>
+                  <div className={`nav-link ${active==="activeFollowing" ? 'active':''}`}>
+                    <Link onClick={() => {
+                      setShowContent("FOLLOWING");
+                      getFollowing(); setActive("activeFollowing")
+                    }} to={`/profile/${userVisited._id}`}>
                       <i className="fas fa-user-friends"/>
                       &nbsp;&nbsp;Following
                     </Link>
                   </div>
                 </li>
+
                 <li className="nav-item">
-                  <div className="nav-link">
-                    <Link onClick={() => findDrinksByCreator(userVisited)}
-                          to={`/profile/${userVisited._id}/drinks`}>
+                  <div className={`nav-link ${active==="activeDrinks" ? 'active':''}`}>
+                    <Link onClick={() => {
+                      setShowContent("DRINKS");
+                      findDrinksByCreator(userVisited); setActive("activeDrinks")
+                    }} to={`/profile/${userVisited._id}`}>
                       <i className="fas fa-glass-martini-alt"/>
                       &nbsp;&nbsp;Drinks
                     </Link>
                   </div>
                 </li>
+
                 <li className="nav-item">
-                  <div className="nav-link">
-                    <Link to={`/profile/${userVisited._id}/comments`}>
+                  <div className={`nav-link ${active==="activeReviews" ? 'active':''}`}>
+                    <Link onClick={() => {
+                      setShowContent("REVIEWS");
+                      findReviewsOfUserVisited(userVisited); setActive("activeReviews")
+                    }} to={`/profile/${userVisited._id}`}>
                       <i className="far fa-comment"/>
                       &nbsp;&nbsp;Reviews
                     </Link>
                   </div>
                 </li>
+
                 <li className="nav-item">
                   <div className="nav-link">
                     <Link to={`/`}>
@@ -97,59 +176,117 @@ const VisitingProfile = () => {
                   </div>
                 </li>
               </ul>
-              <div>
               </div>
-            </div>
 
-            <div className="col col-10 yz-profile-right-column">
-              <Route path={["/profile/:userId"]} exact={true}>
-                <div className="container-fluid yz-profile-message-box">
-                  <div>
-                    <div
-                        className="form-control">Username: {userVisited.username}</div>
-                    <br/>
-                    <div
-                        className="form-control">Email: {userVisited.email}</div>
-                    <br/>
-                    <div
-                        className="form-control">Address: {userVisited.address} </div>
-                    <br/>
-                    <button onClick={() => follow()} type="button"
-                            className="btn btn-primary btn-sm">Follow
-                    </button>
+            {/*
+               (***************right part*****************)
+              */}
+
+            <div className="yz-profile-content-box">
+              {/*
+               (***************user part*****************)
+              */}
+
+              {showContent === "USER" &&
+              <div className="container-fluid yz-profile-message-box">
+                <div>
+                  <div className="card mb-3 yz-profile-other-picture">
+                    <div className="row g-0">
+                      <div className="col-md-6">
+                        <img src={userVisited.photoAddress}
+                             className="img-thumbnail" width={200} alt="..."/>
+                      </div>
+                      <div className="col-md-6">
+                        <div className="card-body">
+                          <h4 className="card-title">{userVisited.username}</h4>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-
-                  {/*Drinks:*/}
-                  {/*<div className='container-fluid'>*/}
-                  {/*  <div className='row yz-gird-row'>*/}
-                  {/*    {drinksOfCurrentUser.map((drink) =>*/}
-                  {/*        <DrinkCard drink={drink}/>*/}
-                  {/*    )}*/}
-                  {/*  </div>*/}
-                  {/*</div>*/}
+                  {!followingState &&
+                  <button onClick={() => follow()} type="button"
+                          className="btn btn-primary btn-info btn-lg">Follow me
+                  </button>
+                  }
+                  {followingState &&
+                  <button onClick={() => unfollow()} type="button"
+                          className="btn btn-primary btn-info btn-lg">Following
+                  </button>
+                  }
                 </div>
-              </Route>
-              <Route path={["/profile/:userId/followers"]} exact={true}>
-                this is followers
-              </Route>
-              <Route path={["/profile/:userId/following"]} exact={true}>
-                this is following
-              </Route>
-              <Route path={["/profile/:userId/comments"]} exact={true}>
-                this is comments
-              </Route>
-              <Route path={["/profile/:userId/drinks"]} exact={true}>
-                Drinks:
-                <div className='container-fluid'>
-                  <div className='row yz-gird-row'>
-                    {drinksOfUserVisited.map((drink) =>
-                        <DrinkCard drink={drink}/>
+              </div>
+              }
+
+              {showContent === "FOLLOWERS" &&
+              <div>
+                {userVisited.followers.length !== 0 &&
+                <div>
+                  <ul>
+                    {userVisited.followers.map((follower) =>
+                        <FollowersCard currentUser={currentUser} user={follower}/>
                     )}
-                  </div>
+                  </ul>
                 </div>
-              </Route>
+                }
+                {userVisited.followers.length === 0 &&
+                <div
+                    className="container-fluid  yz-profile-messages-no-content">
+                  <h4>Like what you see? Follow {userVisited.username} to get
+                    their activity in your feed.</h4>
+                </div>
+                }
+              </div>
+
+              }
+              {showContent === "FOLLOWING" &&
+
+              <div>
+                {userVisited.following.length !== 0 &&
+                <div>
+                  <ul>
+                    {userVisited.following.map((singleFollowing) => {
+                          return (<FollowersCard currentUser={currentUser} user={singleFollowing}/>
+                          )
+                        }
+                    )}
+                  </ul>
+                </div>
+                }
+                {userVisited.following.length === 0 &&
+                <div
+                    className="container-fluid  yz-profile-messages-no-content">
+                  <h3>No following yet.</h3>
+                </div>
+                }
+              </div>
+              }
+              {showContent === "REVIEWS" &&
+              <>
+                <br/><br/>
+                {reviewsOfUserVisited.map(
+                    review => <ReviewCardProfile review={review}/>)}
+              </>
+              }
+              {showContent === "DRINKS" &&
+              <>
+                <div className='container-fluid'>
+                  {drinksOfUserVisited.length !== 0 &&
+                  <>
+                    <div className='row yz-gird-row'>
+                      {drinksOfUserVisited.map((drink) =>
+                          <DrinkCard drink={drink}/>
+                      )}
+                    </div>
+                  </>}
+                  {drinksOfUserVisited.length === 0 &&
+                  <div
+                      className="container-fluid  yz-profile-messages-no-content">
+                    <h4>No cocktail recipes yet.</h4>
+                  </div>}
+                </div>
+              </>
+              }
             </div>
-          </div>
         </div>
       </div>
   )

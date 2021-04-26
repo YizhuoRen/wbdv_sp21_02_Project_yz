@@ -42,9 +42,20 @@ const updateProfile = (user) => {
 }
 
 const findUserById = (userId) => {
-  return fetch(`${URL}/${userId}`
+  return fetch(`${URL}/user/${userId}`,{
+    method:'post'}
   ).then(response => response.json())
 }
+
+const findUserByName = (username) => {
+  return fetch(`${URL}/username/${username}`
+  ).then(response => response.json())
+}
+
+
+const deleteUser = (userId) => fetch(`${URL}/${userId}`,
+      {method: 'delete',  headers: {'content-type': 'application/json'}}
+  ).then(response => response.json())
 
 const follow = (userVisited, currentUser) => {
   return fetch(`${URL}/follow/${userVisited._id}/${currentUser._id}`, {
@@ -52,6 +63,21 @@ const follow = (userVisited, currentUser) => {
     headers: {'content-type': 'application/json'}},
   ).then(response => response.json())
 }
+
+
+const unfollow = (userVisited, currentUser) => fetch(`${URL}/unfollow/${userVisited._id}/${currentUser._id}`, {
+    method:'post',
+    headers: {'content-type': 'application/json'}}
+  ).then(response => response.json())
+
+
+
+const checkFollowingState = (userVisited, currentUser) =>
+fetch(`${URL}/${userVisited._id}/${currentUser._id}`, {
+    method:'post',
+    headers: {'content-type': 'application/json'}}
+  ).then(response => response.json())
+
 
 
 export default {
@@ -62,5 +88,9 @@ export default {
   findRecentNewUsers,
   updateProfile,
   findUserById,
-  follow
+  follow,
+  unfollow,
+  checkFollowingState,
+  findUserByName,
+  deleteUser
 }

@@ -1,4 +1,4 @@
-import {BrowserRouter, Route} from "react-router-dom";
+import {BrowserRouter, Link, Route} from "react-router-dom";
 import Home from "./components/home"
 import SearchScreen from "./components/search-screen";
 import DetailsScreen from "./components/details-screen";
@@ -8,12 +8,15 @@ import Profile from "./components/users/profile";
 import DrinkPage from "./components/drinks/drink-page";
 import VisitingProfile from "./components/users/visiting-profile";
 import AdminPage from "./components/admins/admin-page";
+import UpdatingDrink from "./components/drinks/updating-drink";
+import PrivacyPolicy from "./components/privacy-policy/privacy-policy-page"
+import React from "react";
 
 function App() {
   return (
       <BrowserRouter>
         <div className="container-fluid">
-          <Route path={["/", "/search", "/search/:name"]} exact={true}>
+          <Route path={["/"]} exact={true}>
             <Home/>
           </Route>
           <Route path={["/admin"]} exact={true}>
@@ -51,6 +54,12 @@ function App() {
 
           <Route path={["/drinks/:drinkId"]} exact={true}>
             <DrinkPage/>
+          </Route>
+          <Route path={`/profile/drinks/:drinkId/edit`} exact={true}>
+            <UpdatingDrink/>
+          </Route>
+          <Route path={"/privacyPolicy"} exact={true}>
+            <PrivacyPolicy/>
           </Route>
         </div>
         {/*<Route path="/courses">*/}
