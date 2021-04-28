@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {Link, Route} from "react-router-dom";
 import userService from "../services/user-service";
 import drinkService from "../services/drink-service";
-import reviewService from "../services/review-service";
+import reviewService, {deleteReview} from "../services/review-service";
 import DrinkCardHome from "./drinks/drink-card-home";
 import UserCard from "./users/users-card";
 import ReviewCardHome from "./reviews/review-card-home";
@@ -29,6 +29,13 @@ export default () => {
     userService.findRecentNewUsers().then(
         (newUsers) => settNewUsers(newUsers));
   }, [])
+
+  const deleteReview = (reviewId) => {
+    reviewService.deleteReview(reviewId).then(()=>
+        reviewService.findReviewsByCreator(currentUser._id).then(
+            reviewsByCurrentUser => setReviewsOfCurrentUser(reviewsByCurrentUser)))
+
+  }
 
 
   return(
@@ -87,7 +94,7 @@ export default () => {
     <div className="container-fluid yz-home-card-group">
       <div className='row yz-gird-row'>
         {reviewsOfCurrentUser.map((review) =>
-            <ReviewCardHome review={review}/>
+            <ReviewCardHome review={review} deleteReview={deleteReview}/>
         )}
       </div></div>
     </div>}
@@ -95,7 +102,7 @@ export default () => {
     <div className="container-fluid yz-home-card-group">
         <div className='row yz-gird-row'>
           {drinks.map((drink) =>
-              <DrinkCardHome drink={drink}/>
+              <DrinkCardHome drink={drink} deleteReview={deleteReview}/>
           )}
       </div>
     </div>

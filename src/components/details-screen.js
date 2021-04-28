@@ -40,8 +40,16 @@ const DetailsScreen = () => {
     }
   }
 
+  const createReview = (review) => {
+    reviewService.createReview(drinkId,review).then(review => {
+      reviewService.findReviewsForDrink(drinkId).then(reviews =>
+          setReviewsForCurrentDrink(reviews))
+    });
+  }
+
   return (
-      <div className='container-fluid yz-detail-screen-container'>
+      <div className='container yz-profile-container'>
+        <div className='container'>
         <button onClick={() => {
           history.goBack()
         }}>back
@@ -176,7 +184,7 @@ const DetailsScreen = () => {
           {addingReviewState && <ReviewSubmitForm
               setAddingReviewState={setAddingReviewState}
               currentUser={currentUser}
-              setReviewsForCurrentDrink={setReviewsForCurrentDrink}/>}
+              createReview = {createReview}/>}
           <div>
             <br/>
             <br/>
@@ -184,7 +192,7 @@ const DetailsScreen = () => {
             <ul className="list-group">
               {
                 reviewsForCurrentDrink.map(review =>
-                    <li key={review._id} className="list-group-item">
+                    <li key={review._id} className="list-group-item yz-detail-page-review-li">
                       <h6>{review.content}</h6>
                       <br/>
                       <div className="float-right">
@@ -202,6 +210,7 @@ const DetailsScreen = () => {
             <br/><br/>
           </div>
         </>}
+      </div>
       </div>
   )
 }

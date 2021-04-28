@@ -3,22 +3,13 @@ import {Link, useParams} from "react-router-dom";
 import reviewService from "../../services/review-service";
 import userService from "../../services/user-service";
 
-const ReviewSubmitForm = ({setAddingReviewState, currentUser, setReviewsForCurrentDrink}) => {
+const ReviewSubmitForm = ({setAddingReviewState, currentUser, createReview}) => {
   const {drinkId} = useParams()
   const [newReview, setNewReview] = useState(
       {drink: drinkId, creator: currentUser._id})
 
 
   const [submitSuccessState, setSubmitSuccessState] = useState(false)
-  const createReview = (review) => {
-    reviewService.createReview(drinkId,review).then(review => {
-      setNewReview(review);
-    });
-    setSubmitSuccessState(true)
-    reviewService.findReviewsForDrink(drinkId).then(reviews =>
-        setReviewsForCurrentDrink(reviews))
-  }
-
 
 
   return (
@@ -45,7 +36,7 @@ const ReviewSubmitForm = ({setAddingReviewState, currentUser, setReviewsForCurre
                 <div className="mb-3 row yz-sign-in-row">
                   <div className="col-sm-4">
                     <button onClick={() => {
-                      createReview(newReview)
+                      createReview(newReview); setSubmitSuccessState(true)
                     }}
                             className="btn btn-primary btn-block yz-create-account-btn"
                             id="button">
