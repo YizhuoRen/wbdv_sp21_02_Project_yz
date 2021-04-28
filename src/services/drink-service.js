@@ -26,7 +26,7 @@ const updateDrink = (updatedDrink) =>
 
 const findDrinkById = (id) => {
   return (
-      fetch(`h${DRINKS_URL}/drinks/${id}`,
+      fetch(`${DRINKS_URL}/drinks/${id}`,
           {
             method: 'post',
             headers: {'content-type': 'application/json'}

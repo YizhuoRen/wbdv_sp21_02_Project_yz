@@ -4,7 +4,7 @@ const URL = process.env.REACT_APP_API_URL
 
 const login = (credentials) => {
   return fetch(`${URL}/users/login`, {
-    method:'post',
+    method:'POST',
     credentials: "include",
     body: JSON.stringify(credentials),
     headers: {'content-type': 'application/json'}}).then(response => response.json())
@@ -13,32 +13,32 @@ const login = (credentials) => {
 
 const register = (credentials) =>
     fetch(`${URL}/users/register`, {
-      method:'post',
+      method:'POST',
       credentials: "include",
       body: JSON.stringify(credentials),
       headers: {'content-type': 'application/json'}}).then(response => response.json())
 
 const profile = () => {
-  return fetch(`${URL}/users/profile`, {method: "post",
+  return fetch(`${URL}/users/profile`, {method: "POST",
     headers: {'content-type':'application/json'}, credentials: "include"}).then((response) =>
   response.json())
 }
 
 const logout = () => {
   return fetch(`${URL}/users/logout`, {
-    method:'post',
+    method:'POST',
     headers: {'content-type':'application/json'},
     credentials: "include"}).then(response => response.json())
 }
 
 const findRecentNewUsers= () => {
   return fetch(`${URL}/users/new`, {
-    method:'post', headers: {'content-type':'application/json'}}).then(response => response.json())
+    method:'POST', headers: {'content-type':'application/json'}}).then(response => response.json())
 }
 
 const updateProfile = (user) => {
   return fetch(`${URL}/users/update`, {
-    method:'post',
+    method:'POST',
     credentials: "include",
     body: JSON.stringify(user),
     headers: {'content-type': 'application/json'}},
@@ -47,7 +47,7 @@ const updateProfile = (user) => {
 
 const findUserById = (userId) => {
   return fetch(`${URL}/users/user/${userId}`,{
-    method:'post',
+    method:'POST',
     headers: {'content-type':'application/json'}}
   ).then(response => response.json())
 }
@@ -59,19 +59,19 @@ const findUserByName = (username) => {
 
 
 const deleteUser = (userId) => fetch(`${URL}/users/${userId}`,
-      {method: 'delete',  headers: {'content-type': 'application/json'}}
+      {method: 'DELETE',  headers: {'content-type': 'application/json'}}
   ).then(response => response.json())
 
 const follow = (userVisited, currentUser) => {
   return fetch(`${URL}/users/follow/${userVisited._id}/${currentUser._id}`, {
-    method:'post',
+    method:'POST',
     headers: {'content-type': 'application/json'}},
   ).then(response => response.json())
 }
 
 
 const unfollow = (userVisited, currentUser) => fetch(`${URL}/users/unfollow/${userVisited._id}/${currentUser._id}`, {
-    method:'post',
+    method:'POST',
     headers: {'content-type': 'application/json'}}
   ).then(response => response.json())
 
@@ -79,7 +79,7 @@ const unfollow = (userVisited, currentUser) => fetch(`${URL}/users/unfollow/${us
 
 const checkFollowingState = (userVisited, currentUser) =>
 fetch(`${URL}/users/${userVisited._id}/${currentUser._id}`, {
-    method:'post',
+    method:'POST',
     headers: {'content-type': 'application/json'}}
   ).then(response => response.json())
 
