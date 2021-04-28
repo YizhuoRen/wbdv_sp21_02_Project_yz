@@ -1,7 +1,7 @@
-const DRINKS_URL = "http://localhost:4000/api/users"
-const DRINKS_URL2 = "http://localhost:4000/api/drinks"
+require('dotenv').config()
+const DRINKS_URL = process.env.REACT_APP_API_URL
 
-const createDrink = (userId, newDrink) =>  fetch(`${DRINKS_URL2}/${userId}/drink`, {
+const createDrink = (userId, newDrink) =>  fetch(`${DRINKS_URL}/drinks/${userId}/drink`, {
         method: 'post',
         credentials: "include",
         body: JSON.stringify(newDrink),
@@ -9,16 +9,16 @@ const createDrink = (userId, newDrink) =>  fetch(`${DRINKS_URL2}/${userId}/drink
       }).then(response => response.json())
 
 export const deleteDrink = (drinkId) =>
-    fetch(`${DRINKS_URL2}/${drinkId}`, {method:'DELETE'}).then(response => response.json())
+    fetch(`${DRINKS_URL}/drinks/${drinkId}`, {method:'DELETE'}).then(response => response.json())
 
 const findDrinksByCreator = (userId) => {
   return (
-      fetch(`${DRINKS_URL}/${userId}/drinks`).then(response => response.json())
+      fetch(`${DRINKS_URL}/users/${userId}/drinks`).then(response => response.json())
   )
 }
 
 const updateDrink = (updatedDrink) =>
-    fetch(`${DRINKS_URL2}/${updatedDrink._id}`, {
+    fetch(`${DRINKS_URL}/drinks/${updatedDrink._id}`, {
       method: 'put',
       body: JSON.stringify(updatedDrink),
       headers: {'content-type': 'application/json'}
@@ -26,7 +26,7 @@ const updateDrink = (updatedDrink) =>
 
 const findDrinkById = (id) => {
   return (
-      fetch(`http://localhost:4000/api/drinks/${id}`,
+      fetch(`h${DRINKS_URL}/drinks/${id}`,
           {
             method: 'post',
             headers: {'content-type': 'application/json'}
@@ -37,7 +37,7 @@ const findDrinkById = (id) => {
 
 const findDrinksOfRecent = () => {
   return (
-      fetch(`http://localhost:4000/api/drinks`,
+      fetch(`${DRINKS_URL}/drinks`,
           {
             method: 'post',
             headers: {'content-type': 'application/json'}
@@ -46,14 +46,14 @@ const findDrinksOfRecent = () => {
   )
 }
 
-const findTotalDrinkByName = (drinkName) => fetch(`http://localhost:4000/api/totalDrinks/name/${drinkName}`,
+const findTotalDrinkByName = (drinkName) => fetch(`${DRINKS_URL}/totalDrinks/name/${drinkName}`,
     {
       method: 'post',
       headers: {'content-type': 'application/json'}
     }).then(
     response => response.json())
 
-const findDrinkByName = (drinkName) => fetch(`http://localhost:4000/api/drinks/name/${drinkName}`,
+const findDrinkByName = (drinkName) => fetch(`${DRINKS_URL}/drinks/name/${drinkName}`,
     {
       method: 'post',
       headers: {'content-type': 'application/json'}
@@ -73,8 +73,3 @@ export default {
   findTotalDrinkByName
 };
 
-// findDrinksByCreator,
-//     findAllDrinks,
-//     findDrinksByName,
-//     createDrink,
-//     deleteDrink
