@@ -15,6 +15,7 @@ const login = (credentials) => {
 const logout = () => {
   return fetch(`${ADMIN_URL}/admins/logout`, {
     method:'post',
+    headers: {'content-type':'application/json'},
     credentials: "include"}).then(response => response.json())
 }
 
@@ -26,7 +27,7 @@ const createAdmin = (credentials) =>
       headers: {'content-type': 'application/json'}}).then(response => response.json())
 
 const adminPage = () => {
-  return fetch(`${ADMIN_URL}/admins/admin`, {method: "post", credentials: "include"}).then((response) =>
+  return fetch(`${ADMIN_URL}/admins/admin`, {method: "post", headers: {'content-type':'application/json'}, credentials: "include"}).then((response) =>
       response.json())
 }
 

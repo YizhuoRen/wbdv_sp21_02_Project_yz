@@ -19,19 +19,21 @@ const register = (credentials) =>
       headers: {'content-type': 'application/json'}}).then(response => response.json())
 
 const profile = () => {
-  return fetch(`${URL}/users/profile`, {method: "post", credentials: "include"}).then((response) =>
+  return fetch(`${URL}/users/profile`, {method: "post",
+    headers: {'content-type':'application/json'}, credentials: "include"}).then((response) =>
   response.json())
 }
 
 const logout = () => {
   return fetch(`${URL}/users/logout`, {
     method:'post',
+    headers: {'content-type':'application/json'},
     credentials: "include"}).then(response => response.json())
 }
 
 const findRecentNewUsers= () => {
   return fetch(`${URL}/users/new`, {
-    method:'post'}).then(response => response.json())
+    method:'post', headers: {'content-type':'application/json'}}).then(response => response.json())
 }
 
 const updateProfile = (user) => {
@@ -45,7 +47,8 @@ const updateProfile = (user) => {
 
 const findUserById = (userId) => {
   return fetch(`${URL}/users/user/${userId}`,{
-    method:'post'}
+    method:'post',
+    headers: {'content-type':'application/json'}}
   ).then(response => response.json())
 }
 
