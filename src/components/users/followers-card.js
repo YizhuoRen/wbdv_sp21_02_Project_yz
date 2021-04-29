@@ -7,18 +7,19 @@ const FollowersCard = ({currentUser, user}) => {
       <div className="card mb-3 yz-user-card">
         <div className="row g-0">
           <div className="col-md-4">
-            { currentUser !== 0 &&
-              currentUser.username !== undefined && currentUser._id === user._id &&
-              <Link to={`/profile`}>
-                <img src={user.photoAddress} width={100} alt="..."/>
-              </Link>
-            }
             {
               (currentUser.username === undefined || currentUser._id !== user._id) &&
               <Link to={`/profile/${user._id}`}>
                 <img src={user.photoAddress} width={100} alt="..."/>
               </Link>
             }
+            { currentUser !== 0 && currentUser.username !== undefined
+            && currentUser._id === user._id &&
+              <Link to={`/profile`}>
+                <img src={user.photoAddress} width={100} alt="..."/>
+              </Link>
+            }
+
           </div>
           <div className="col-md-8">
             <div className="card-body">

@@ -13,6 +13,7 @@ export default () => {
   const [userFound, setUserFound] = useState([]);
   const [drinksFound, setDrinksFound] = useState([]);
   const [isNavCollapsed, setIsNavCollapsed] = useState(true);
+  const history = useHistory();
   const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
   const logout = () => {
     adminsService.logout().then(response => setCurrentAdmin(response))
@@ -34,14 +35,19 @@ export default () => {
   }
 
   const findDrinkByName = (drinkName) => {
-    drinkService.findDrinkByName(drinkName).then((drinks) =>
-        setDrinksFound(drinks))
+    drinkService.findDrinkByName(drinkName).then((drinks) => {
+          setDrinksFound(drinks)
+      alert(JSON.stringify(drinks))
+        }
+    );
   }
 
 
-  const deleteUser = () => {
-    userService.deleteUser(userFound._id).then(() =>
-        alert("Successfully Deleted the User!")
+  const deleteUser = (userFoundId) => {
+    userService.deleteUser(userFoundId).then(() => {
+          alert("Successfully Deleted the User!");
+
+        }
     )
   }
 
@@ -102,7 +108,7 @@ export default () => {
         <h3>Welcome    {currentAdmin.username}</h3>}
         {status === "user" &&
             <div>
-        <div className="input-group mb-3 yz-home-input">
+        <div className="input-group mb-3 yz-admin-input">
           <input onChange={(event) => setSearchName(event.target.value)} value={searchName}
                  type="text" className="form-control"
                  placeholder="Input a username"
@@ -122,7 +128,7 @@ export default () => {
                     {/*<Link to={`/details/${cocktail.idDrink}`}>*/}
                     {user.username}
 
-                    <button onClick={deleteUser} type="button"
+                    <button onClick={()=>{deleteUser(user._id); setStatus("")}} type="button"
                     className="btn btn-danger float-right">Delete</button>
                     {/*</Link>*/}
                     </li>
@@ -139,7 +145,7 @@ export default () => {
         }
         {status === "drink" &&
         <div>
-          <div className="input-group mb-3 yz-home-input">
+          <div className="input-group mb-3 yz-admin-input">
             <input onChange={(event) => setSearchDrinkName(event.target.value)} value={searchDrinkName}
                    type="text" className="form-control"
                    placeholder="Input a drink name"

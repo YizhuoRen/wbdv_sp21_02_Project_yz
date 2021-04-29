@@ -2,14 +2,15 @@ import React, {useEffect, useState} from "react"
 import {Link, Route, useHistory} from "react-router-dom";
 import drinkService from "../../services/drink-service"
 
-const CurrentDrink = ({userId}) => {
+const CurrentDrink = ({userId, setActive, setShowContent}) => {
   const [newDrink, setNewDrink] = useState({})
   const history = useHistory();
 
   const createNewDrink = () => {
     drinkService.createDrink(userId, newDrink).then((result) => {
       setNewDrink(result);
-      history.push(`/details/${result._id}`)
+      setActive("activeCreateDrinks");
+      setShowContent("CREATE_DRINK");
     });
   }
 

@@ -42,6 +42,11 @@ html, body {
   margin: auto;
 }
 
+.yz-admin-input {
+  width: 60%;
+  margin: auto;
+}
+
 .yz-search-result-list {
   width: 60%;
   position: absolute;

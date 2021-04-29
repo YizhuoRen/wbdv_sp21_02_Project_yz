@@ -48,7 +48,9 @@ const updateProfile = (user) => {
 const findUserById = (userId) => {
   return fetch(`${URL}/users/user/${userId}`,{
     method:'POST',
-    headers: {'content-type':'application/json'}}
+    headers: {'content-type':'application/json'},
+    body: JSON.stringify({id:userId})
+  }
   ).then(response => response.json())
 }
 

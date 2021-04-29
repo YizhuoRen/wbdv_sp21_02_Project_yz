@@ -56,6 +56,7 @@ const findTotalDrinkByName = (drinkName) => fetch(`${DRINKS_URL}/totalDrinks/nam
 const findDrinkByName = (drinkName) => fetch(`${DRINKS_URL}/drinks/name/${drinkName}`,
     {
       method: 'post',
+      body: JSON.stringify({drinkName: drinkName}),
       headers: {'content-type': 'application/json'}
     }).then(
     response => response.json())

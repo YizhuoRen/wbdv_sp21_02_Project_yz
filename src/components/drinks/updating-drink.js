@@ -8,6 +8,11 @@ const UpdatingDrink = () => {
   const [drink, setDrink] = useState({})
   const [newUpdatedDrink, setNewUpdatedDrink] = useState({})
   const history = useHistory();
+  const updateDrink = () => {
+    drinkService.updateDrink(newUpdatedDrink).then((result) => {
+      setDrink(result)
+    });
+  }
 
   useEffect(() => {
     drinkService.findDrinkById(drinkId).then(drink => {
@@ -16,11 +21,7 @@ const UpdatingDrink = () => {
     });
   }, [])
 
-  const updateDrink = () => {
-    drinkService.updateDrink(newUpdatedDrink).then((result) => {
-      history.push(`/details/${result._id}`)
-    });
-  }
+
 
   return(
       <div className="container yz-update-drink-container">
@@ -62,7 +63,8 @@ const UpdatingDrink = () => {
         </div>
 
         <button onClick={() => {
-          updateDrink()
+          updateDrink();
+          history.push('/profile')
         }} type="submit" className="btn btn-primary">Update</button>
       </form>
       </div>)

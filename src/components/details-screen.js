@@ -164,7 +164,7 @@ const DetailsScreen = () => {
         }
         <br/>
         <div>
-          {creator !== {} &&
+          {creator !== {}&& creator!== undefined && creator._id === undefined &&
           <>By:
           <Link to={`/profile/${creator._id}`}>
              &nbsp;&nbsp;

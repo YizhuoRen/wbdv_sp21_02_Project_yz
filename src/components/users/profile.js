@@ -45,6 +45,7 @@ const Profile = () => {
       userService.findUserById(currentUser._id).then(
           (user) => setCurrentUser(user)
       )
+      // alert(JSON.stringify(currentUser.id))
     }
   }
 
@@ -323,7 +324,7 @@ const Profile = () => {
                (***************CREATE DRINK part*****************)
               */}
                 {showContent === "CREATE_DRINK" &&
-                <CurrentDrink userId={currentUser._id}/>
+                <CurrentDrink setActive={setActive} setShowContent={setShowContent} userId={currentUser._id}/>
                 }
 
 

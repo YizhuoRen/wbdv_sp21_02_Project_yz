@@ -21,7 +21,9 @@ const VisitingProfile = () => {
 
   useEffect(() => {
         userService.findUserById(userId).then((user) => {
-          setUserVisited(user)
+          setUserVisited(user);
+          setActive("activeUser")
+          setShowContent("USER");
           userService.profile().then(currentUser => {
             setCurrentUser(currentUser)
             checkFollowingState(user, currentUser);
@@ -46,7 +48,7 @@ const VisitingProfile = () => {
   }
 
   const follow = () => {
-    if (currentUser === 0) {
+    if (currentUser === 0 || currentUser.username === undefined) {
       alert("please login first")
     }
     else {
@@ -97,6 +99,10 @@ const VisitingProfile = () => {
   return (
       <div className="container yz-profile-container">
         <br/>
+        {userVisited.username === undefined &&
+        <h3>No such user exists! <Link to="/">Home</Link></h3>}
+        {userVisited.username !== undefined &&
+            <>
         <div className="float-right font-italic">
           <h6>Profile of <strong>{userVisited.username}</strong></h6>
         </div>
@@ -262,9 +268,19 @@ const VisitingProfile = () => {
               }
               {showContent === "REVIEWS" &&
               <>
-                <br/><br/>
-                {reviewsOfUserVisited.map(
-                    review => <ReviewCardProfile review={review}/>)}
+                {reviewsOfUserVisited.length === 0  &&
+                <div
+                    className="container-fluid  yz-profile-messages-no-content">
+                  <h3>No review.</h3>
+                </div>
+                }
+                {reviewsOfUserVisited.length > 0 &&
+                    <>
+                      <br/><br/> {
+                    reviewsOfUserVisited.map(
+                        review => <ReviewCardProfile review={review}/>)}
+                      </>
+                }
               </>
               }
               {showContent === "DRINKS" &&
@@ -288,6 +304,7 @@ const VisitingProfile = () => {
               }
             </div>
         </div>
+            </>}
       </div>
   )
 }
