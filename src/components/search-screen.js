@@ -22,10 +22,14 @@ const SearchScreen = () => {
 
   const findCocktailsByName = (name) =>
   {
-    history.push(name)
-    drinkService.findTotalDrinkByName(name).then((results)=>{
-    setResults(results)
-  })}
+    drinkService.findTotalDrinkByName(name).then((re)=>{
+      if (re.length === 0)  {
+        history.push("/search")
+      }
+    setResults(re);
+  })
+
+  }
   return(
       <div className="yz-major-container-home">
         <nav className="navbar navbar-expand-lg navbar-light yz-home-navbar">
@@ -72,7 +76,7 @@ const SearchScreen = () => {
                  placeholder="Search by Name"
                  aria-label="Search by Name"
                  aria-describedby="button-addon2"/>
-          <button onClick={()=> findCocktailsByName(searchName)} className="btn btn-outline-secondary yz-home-input-search-div" type="button"
+          <button onClick={()=>{history.push("/search/"+searchName); findCocktailsByName(searchName)}} className="btn btn-outline-secondary yz-home-input-search-div" type="button"
                   id="button-addon2">
             <i className="fa fa-search"/>
           </button>

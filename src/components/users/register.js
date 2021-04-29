@@ -21,13 +21,13 @@ const Register = () => {
     }
   }
   return (
-      <div className="row container yz-sign-up-container">
-        <div className="col-7">
+      <div className=" container yz-profile-container">
+        <div className="col-5">
           <img src="https://images.unsplash.com/photo-1556881261-e41e8db21055?ixlib=r
           b-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfH
           x8fGVufDB8fHx8&auto=format&fit=crop&w=668&q=80" className="yz-sign-up-image" alt=""/>
         </div>
-        <div className="col-5 yz-sign-up-box">
+        <div className="col-7 yz-sign-up-box">
           <div className="yz-signup-title">Create Your Funtail Account</div>
           <div className="mb-3 row yz-sign-up-row">
             <label htmlFor="username" className="col-sm-2 yz-sign-up-labels">Username</label>

@@ -276,9 +276,12 @@ const VisitingProfile = () => {
                 }
                 {reviewsOfUserVisited.length > 0 &&
                     <>
-                      <br/><br/> {
+                      <br/><br/>
+                      <div className='row yz-gird-row'>
+                      {
                     reviewsOfUserVisited.map(
                         review => <ReviewCardProfile review={review}/>)}
+                      </div>
                       </>
                 }
               </>

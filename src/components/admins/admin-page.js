@@ -37,7 +37,6 @@ export default () => {
   const findDrinkByName = (drinkName) => {
     drinkService.findDrinkByName(drinkName).then((drinks) => {
           setDrinksFound(drinks)
-      alert(JSON.stringify(drinks))
         }
     );
   }

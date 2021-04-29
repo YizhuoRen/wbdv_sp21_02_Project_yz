@@ -334,9 +334,11 @@ const Profile = () => {
                 {showContent === "REVIEWS" &&
                 <>
                     <br/><br/>
+                    <div className='row yz-gird-row'>
                     {reviewsByCurrentUser.map(review =>
-                        <ReviewCardProfile review={review} deleteReview={deleteReview}/>
+                        <ReviewCardProfile review={review} deleteReview={deleteReview} editable={true}/>
                     )}
+                      </div>
                 </>
                 }
 
