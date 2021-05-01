@@ -1,5 +1,5 @@
 [GoogleDoc link](https://docs.google.com/document/d/1mzwHyGgbZnY5PQlqcyJICwEMpSKlxQwLBcrpge6O3nM/edit?usp=sharing)
-1. Application name: FunCocktail
+1. Application name: FunTail
 2. The problem trying to solve:
    - Trying to build a online cocktail website which can provide an interface where users can identify and narrow cocktail choices based on the key features and attributes that are important to them and help them find something that exactly matches their search on the site.
 Types of users: user, admin
