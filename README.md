@@ -22,7 +22,6 @@
    - Build the server with nodejs and mongoose.
    - Work with data available from some public, free, Web API.
    - Use mongodb database to store data.
-   - Deploy the client and server on Heroku.
  
 5. A brief description of the Web API:
    - [Web API Link](https://www.thecocktaildb.com/api.php)
