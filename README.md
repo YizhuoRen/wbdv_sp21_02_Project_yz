@@ -27,3 +27,5 @@
 5. A brief description of the Web API:
    - [Web API Link](https://www.thecocktaildb.com/api.php)
    - This Web API can give 1000s cocktails, can search for recipes, images of specific cocktails, ingredients, filter by alcoholic, non alcoholic and so on.
+
+![funtail_screenshot1](https://user-images.githubusercontent.com/72764920/117737947-c0626880-b1af-11eb-9104-6b3c9302cd9d.png)
