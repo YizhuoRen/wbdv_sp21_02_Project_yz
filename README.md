@@ -27,5 +27,7 @@
    - [Web API Link](https://www.thecocktaildb.com/api.php)
    - This Web API can give 1000s cocktails, can search for recipes, images of specific cocktails, ingredients, filter by alcoholic, non alcoholic and so on.
 
-<img src="https://user-images.githubusercontent.com/72764920/117737947-c0626880-b1af-11eb-9104-6b3c9302cd9d.png" width="400" height="500" /><img src="https://user-images.githubusercontent.com/72764920/117738879-e0932700-b1b1-11eb-8733-ccf0f7811b92.png" width="500" height="500" />
-<img src="https://user-images.githubusercontent.com/72764920/117738975-218b3b80-b1b2-11eb-861f-d223aec31b84.png" width="400" height="300" /><img src="https://user-images.githubusercontent.com/72764920/117738981-26e88600-b1b2-11eb-9a78-ebe0bbb0f892.png" width="500" height="300" />
+     <img src="https://user-images.githubusercontent.com/72764920/117737947-c0626880-b1af-11eb-9104-6b3c9302cd9d.png" width="400" height="500" />
+<img src="https://user-images.githubusercontent.com/72764920/117738879-e0932700-b1b1-11eb-8733-ccf0f7811b92.png" width="500" height="450" />
+<img src="https://user-images.githubusercontent.com/72764920/117738975-218b3b80-b1b2-11eb-861f-d223aec31b84.png" width="550" height="300" />
+<img src="https://user-images.githubusercontent.com/72764920/117738981-26e88600-b1b2-11eb-9a78-ebe0bbb0f892.png" width="550" height="300" />
